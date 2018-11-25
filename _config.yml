@@ -1,0 +1,14 @@
+# Set layout pages.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "main"
+
+# Files to exclude from site conversion.
+exclude:
+  ["serve.command"]
+
+# SASS Config
+sass:
+  style: compressed
