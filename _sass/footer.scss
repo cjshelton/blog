@@ -1,5 +1,69 @@
+$footer-height: 180px;
+$footer-margin-height: 5px;
+
 footer {
     background-color: $footer-grey;
-    border-top: solid $footer-darkgrey 5px;
-    height: 200px;
+    border-top: solid $footer-darkgrey $footer-margin-height;
+    height: $footer-height;
+
+    .footer-content {
+        display: flex;
+        align-items: center;
+        height: calc(#{$footer-height} - #{$footer-margin-height});
+
+        .footer-part {
+            flex: 1 1;
+            text-align: right;
+
+            &#footer-left {
+                text-align: left;
+
+                #github-link {
+                    a {
+                        color: $dark-text;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+
+                        #github-username {
+                            font-size: 1.5em;
+                            font-family: "Lucida Console", Monaco, monospace;
+                        }
+                    }
+                }
+            }
+
+            &#footer-center {
+                text-align: center;
+
+                #copyright-text {
+                    font-size: 1.1em;
+                }
+            }
+
+            &#footer-right {
+                text-align: right;
+
+                span {
+                    font-size: 0.9em;
+                }
+
+                a {
+                    img {
+                        width: 160px;
+                    }
+                }
+
+                #site-info-text {
+                    font-size: 0.9em;
+
+                    a {
+                        color: $dark-text;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
 }

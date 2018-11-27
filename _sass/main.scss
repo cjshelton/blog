@@ -5,14 +5,18 @@
     box-sizing: border-box;
 }
 
-html {
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-}
-
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
+    // Set the site text properties.
+    color: $dark-text;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+    p {
+        margin: 0;
+    }
 }
 
 #site-content {
