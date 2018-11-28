@@ -6,6 +6,14 @@ footer {
     border-top: solid $footer-darkgrey $footer-margin-height;
     height: $footer-height;
 
+    // At this width, Bootstrap reduces the width of the container such that there are large gaps on either side.
+    // Override this to make it full width.
+    .container {
+        @media(max-width: 992px) {
+            max-width: 100%;
+        }
+    }
+
     .footer-content {
         display: flex;
         align-items: center;
@@ -24,6 +32,10 @@ footer {
 
                         &:hover {
                             text-decoration: none;
+                        }
+
+                        img {
+                            width: 60px;
                         }
 
                         #github-username {
@@ -61,6 +73,38 @@ footer {
                     a {
                         color: $dark-text;
                         text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    @media(max-width: 670px) {
+        // We no longer need a fixed height footer. Let the contents of the flex box set the height.
+        height: auto;
+
+        // Change to a column flex layout on smaller screens and adjust the order.
+        .footer-content {
+            flex-direction: column;
+            height: auto;
+
+            .footer-part {
+                flex: 0;
+
+                &#footer-left {
+                    order: 1;
+                }
+
+                &#footer-center {
+                    order: 3;
+                }
+
+                &#footer-right {
+                    order: 2;
+                    text-align: center;
+
+                    #powered-by, #hosted-by {
+                        display: inline-block;
                     }
                 }
             }
