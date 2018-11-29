@@ -1,7 +1,30 @@
-<nav>
-  {% for item in site.data.navigation %}
-    <a href="{{ item.baseurl }}{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>
-      {{ item.name }}
-    </a>
-  {% endfor %}
+<nav class="navbar navbar-expand-sm">
+  <a class="navbar-brand" href="{{ site.baseurl }}/">
+      <strong>Chris Shelton</strong>
+      <span>| Blog</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+        {% for item in site.data.navigation.links %}
+            {% if page.url == item.link %}
+
+                <a class="{{ site.data.navigation.link-classes }} current" href="{{ item.baseurl }}{{ item.link }}">
+                    <span class="current-link-brace">{</span>
+                    <span>{{ item.name }}</span>
+                    <span class="current-link-brace">}</span>
+                </a>
+
+            {% else %}
+
+                <a class="{{ site.data.navigation.link-classes }}" href="{{ item.baseurl }}{{ item.link }}">
+                    <span>{{ item.name }}</span>
+                </a>
+
+            {% endif %}
+        {% endfor %}
+    </div>  
+  </div>
 </nav>

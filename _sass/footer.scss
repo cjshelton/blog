@@ -2,8 +2,8 @@ $footer-height: 180px;
 $footer-margin-height: 5px;
 
 footer {
-    background-color: $footer-grey;
-    border-top: solid $footer-darkgrey $footer-margin-height;
+    background-color: $grey;
+    border-top: solid $darkgrey $footer-margin-height;
     height: $footer-height;
 
     // At this width, Bootstrap reduces the width of the container such that there are large gaps on either side.
