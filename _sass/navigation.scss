@@ -24,19 +24,20 @@ nav {
         }
     }
 
-    .nav-item {
-        &.nav-link {
-            color: $navbar-green;
-        }
+    .current-link-brace {
+        font-family: $console-font;
+        font-size: 2em;
+        color: $navbar-red;
     }
 
     a {
-        line-height: 1.6em;
+        line-height: 2em;
         font-size: 1.2em;
+    }
 
-        .current-link-brace {
-            font-size: 1.6em;
-            color: $navbar-red;
+    .nav-item {
+        &.nav-link {
+            color: $navbar-green;
         }
     }
 }

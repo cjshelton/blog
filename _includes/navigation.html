@@ -11,11 +11,11 @@
         {% for item in site.data.navigation.links %}
             {% if page.url == item.link %}
 
+                <span class="current-link-brace">{</span>
                 <a class="{{ site.data.navigation.link-classes }} current" href="{{ item.baseurl }}{{ item.link }}">
-                    <span class="current-link-brace">{</span>
                     <span>{{ item.name }}</span>
-                    <span class="current-link-brace">}</span>
                 </a>
+                <span class="current-link-brace">}</span>
 
             {% else %}
 
