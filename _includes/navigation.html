@@ -9,21 +9,20 @@
   <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
         {% for item in site.data.navigation.links %}
-            {% if page.url == item.link %}
-
-                <span class="current-link-brace">{</span>
-                <a class="{{ site.data.navigation.link-classes }} current" href="{{ item.baseurl }}{{ item.link }}">
-                    <span>{{ item.name }}</span>
-                </a>
-                <span class="current-link-brace">}</span>
-
-            {% else %}
-
-                <a class="{{ site.data.navigation.link-classes }}" href="{{ item.baseurl }}{{ item.link }}">
-                    <span>{{ item.name }}</span>
-                </a>
-
-            {% endif %}
+            <div class="outer-nav-link">
+                {% if page.url == item.link %}
+                        <span class="current-link-brace">{</span>
+                        <a class="{{ site.data.navigation.link-classes }} current" href="{{ item.baseurl }}{{ item.link }}">
+                            <span>{{ item.name }}</span>
+                        </a>
+                        <span class="current-link-brace">}</span>
+                {% else %}
+                    <span class="not-current-link-brace">{</span>
+                    <a class="{{ site.data.navigation.link-classes }} not-current" href="{{ item.baseurl }}{{ item.link }}">
+                        <span>{{ item.name }}</span>
+                    </a>
+                {% endif %}
+            </div>
         {% endfor %}
     </div>  
   </div>
