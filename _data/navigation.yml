@@ -1,2 +1,9 @@
-- name: Home
-  link: /
+links:
+  - name: Home
+    link: /
+  - name: Search
+    link: /search
+  - name: All Posts
+    link: /all
+
+link-classes: nav-item nav-link

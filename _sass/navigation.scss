@@ -1,0 +1,62 @@
+$navbar-blue: #23c4ff;
+$navbar-green: #92D050;
+$navbar-red: #EC4959;
+
+// # symbols are deprecated in data urls so RGBA is needed for the toggler icon.
+$navbar-green-rgba: rgba($navbar-green, 0.99);
+
+nav.navbar-expand-sm {
+    background-color: $darkgrey;
+
+    .navbar-brand {
+        color: $navbar-blue;
+
+        span {
+            color: #bdedff;
+        }
+    }
+
+    .navbar-toggler {
+        border-color: $navbar-red;
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-green-rgba}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+    }
+
+    .current-link-brace, .not-current-link-brace {
+        font-family: $console-font;
+        font-size: 2em;
+    }
+
+    .current-link-brace {
+        color: $navbar-red;
+    }
+
+    // Display a starting curly brace for mobiles so the menu items in the navbar are correctly aligned.
+    .not-current-link-brace {
+        // Hide the curly brace against the background.
+        color: $darkgrey;
+
+        @media(min-width: 576px) {
+            display: none;
+        }
+    }
+
+    .outer-nav-link {
+        display:flex;
+        flex-direction: row;
+
+        .nav-item {
+            &.nav-link {
+                color: $navbar-green;
+                line-height: 2em;
+                font-size: 1.2em;
+
+                &:hover {
+                   color: white;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,113 @@
+$footer-height: 180px;
+$footer-margin-height: 5px;
+
+footer {
+    background-color: $grey;
+    border-top: solid $darkgrey $footer-margin-height;
+    height: $footer-height;
+
+    // At this width, Bootstrap reduces the width of the container such that there are large gaps on either side.
+    // Override this to make it full width.
+    .container {
+        @media(max-width: 992px) {
+            max-width: 100%;
+        }
+    }
+
+    .footer-content {
+        display: flex;
+        align-items: center;
+        height: calc(#{$footer-height} - #{$footer-margin-height});
+
+        .footer-part {
+            flex: 1 1;
+            text-align: right;
+
+            &#footer-left {
+                text-align: left;
+
+                #github-link {
+                    a {
+                        color: $dark-text;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+
+                        img {
+                            width: 60px;
+                        }
+
+                        #github-username {
+                            font-size: 1.5em;
+                            font-family: $console-font;
+                        }
+                    }
+                }
+            }
+
+            &#footer-center {
+                text-align: center;
+
+                #copyright-text {
+                    font-size: 1.1em;
+                }
+            }
+
+            &#footer-right {
+                text-align: right;
+
+                span {
+                    font-size: 0.9em;
+                }
+
+                a {
+                    img {
+                        width: 160px;
+                    }
+                }
+
+                #site-info-text {
+                    font-size: 0.9em;
+
+                    a {
+                        color: $dark-text;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    @media(max-width: 670px) {
+        // We no longer need a fixed height footer. Let the contents of the flex box set the height.
+        height: auto;
+
+        // Change to a column flex layout on smaller screens and adjust the order.
+        .footer-content {
+            flex-direction: column;
+            height: auto;
+
+            .footer-part {
+                flex: 0;
+
+                &#footer-left {
+                    order: 1;
+                }
+
+                &#footer-center {
+                    order: 3;
+                }
+
+                &#footer-right {
+                    order: 2;
+                    text-align: center;
+
+                    #powered-by, #hosted-by {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
