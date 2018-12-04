@@ -1,4 +1,22 @@
 ---
-title: Home
+title: Blog
 ---
-<h1>Home</h1>
+<div id="index-page" class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 id="page-header">Latest Posts</h1>
+        </div>
+    </div>
+    {% for post in site.posts %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="site-post">
+                    <h3 class="site-post-header"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                    <span class="published-date float-right">Published {{ post.date | date_to_string }}</span>
+                    <div class="clearfix"></div>
+                    {{ post.excerpt }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
