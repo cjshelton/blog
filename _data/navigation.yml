@@ -2,8 +2,8 @@ links:
   - name: Home
     link: /
   - name: Search
-    link: /search
+    link: /search.html
   - name: All Posts
-    link: /all
+    link: /all.html
 
 link-classes: nav-item nav-link
