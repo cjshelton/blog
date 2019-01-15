@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm">
-  <a class="navbar-brand" href="{{ site.baseurl }}/">
+  <a class="navbar-brand" href="{{ "/" | relative_url }}">
       <strong>Chris Shelton</strong>
       <span>| Blog</span>
   </a>
@@ -12,18 +12,18 @@
             <div class="outer-nav-link">
                 {% if page.url == item.link %}
                         <span class="current-link-brace">{</span>
-                        <a class="{{ site.data.navigation.link-classes }} current" href="{{ item.baseurl }}{{ item.link }}">
+                        <a class="{{ site.data.navigation.link-classes }} current" href="{{ item.link | relative_url }}">
                             <span>{{ item.name }}</span>
                         </a>
                         <span class="current-link-brace">}</span>
                 {% else %}
                     <span class="not-current-link-brace">{</span>
-                    <a class="{{ site.data.navigation.link-classes }} not-current" href="{{ item.baseurl }}{{ item.link }}">
+                    <a class="{{ site.data.navigation.link-classes }} not-current" href="{{ item.link | relative_url }}">
                         <span>{{ item.name }}</span>
                     </a>
                 {% endif %}
             </div>
         {% endfor %}
-    </div>  
+    </div>
   </div>
 </nav>

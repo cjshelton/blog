@@ -1,4 +1,5 @@
 $navbar-blue: #23c4ff;
+$navbar-lightblue: #bdedff;
 $navbar-green: #92D050;
 $navbar-red: #EC4959;
 
@@ -12,7 +13,7 @@ nav.navbar-expand-sm {
         color: $navbar-blue;
 
         span {
-            color: #bdedff;
+            color: $navbar-lightblue;
         }
     }
 
