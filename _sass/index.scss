@@ -1,0 +1,27 @@
+#index-page {
+    #page-header {
+        margin-bottom: 30px;
+    }
+
+    .site-post {
+        margin-bottom: 30px;
+        
+        .site-post-header {
+            display: inline-block;  
+            a {
+                color: #3366ff;
+            }
+        }
+
+        .published-date {
+            color: $grey;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        // Post excerpt
+        p {
+            color: #737373;
+        }
+    }
+}
