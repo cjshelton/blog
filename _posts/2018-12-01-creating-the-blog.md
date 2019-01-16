@@ -69,24 +69,25 @@ Support for SASS is built right into Jekyll, so it didn't take much setting up t
 
 One of the main benefits I have found from using a static site generator is being able to define layout pages and using them to structure pages in a more readable and maintainable way.
 
-I created a main layout page to act as the base HTML for all pages, containing placeholders for the header, nav, body and footer content defined using Liquid syntax. This meant that all pages were based off the same base HTML, ensuring consistency in the event of any changes.
+I created a main layout page to act as the base HTML for all pages, containing placeholders for the header, nav, body and footer content, defined using Liquid syntax. This meant that all pages were based off the same base HTML, ensuring consistency in the event of any changes.
 
 {:.code-block}
+{% raw %}
 ```
 <!doctype html>
 <html>
     <head>
-        {{ "{% include head.html " }}%}
+        {% include head.html %}
     </head>
     <body>
         <header>
-            {{ "{% include navigation.html " }}%}
+            {% include navigation.html %}
         </header>
         <div id="site-content">
-            {{ "{{ content " }}}}
+            {{ content }}
         </div>
         <footer>
-            {{ "{% include footer.html " }}%}
+            {% include footer.html %}
         </footer>
 
         <script src="{{ "/assets/js/lib/jquery-3.3.1.min.js" | relative_url }}"></script>
@@ -94,10 +95,12 @@ I created a main layout page to act as the base HTML for all pages, containing p
     </body>
 </html>
 ```
+{% endraw %}
 
-Every blog post will has a very similar structure so it makes sense to make use of a Layout page here too. Again, this layout is small, defining the Bootstrap grid layout and setting the blog title, date published and and blog content through Liquid.
+Every blog post has a very similar structure so it makes sense to make use of a Layout page here too for defining the Bootstrap grid layout and setting the blog title, date published and blog content through Liquid syntax. Layout pages can use other layout pages. Using Front Matter defined at the top of the page, I configured the Post Layout page to make use of the main layout:
 
 {:.code-block}
+{% raw %}
 ```
 ---
 layout: main
@@ -105,35 +108,82 @@ layout: main
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 id="post-title">{{ "{{ page.title " }}}}</h2>
-            <h4 id="post-published-date">Published: {{ "{{ page.date | date_to_string " }}}}</h4>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="post-content">
-                {{ "{{ content " }}}}
-            </div>
-        </div>
-    </div>
-</div>
+            <h2 id="post-title">{{ page.title }}</h2>
+            <h4 id="post-published-date">Published: {{ page.date | date_to_string }}</h4>
+    
+    <!-- Code removed for brevity -->
 ```
+{% endraw %}
 
 ## Includes
 
-Similar to Layouts, Includes helped reduce duplication and promoted a cleaner more modular approach to defining the HTML for all pages.
+Similar to Layouts, Includes helped reduce duplication and promote a cleaner more modular approach to defining HTML. For those who are familiar with ASP.NET, Includes work like Partial Views, abstracting the HTML out to seperate files, allowing pages to be built from components which can be shared amongst pages.
 
-I created Includes for HTML that either needed to be used in multiple places, or when the HTML was defnining a logical component of the website. Using this criteria, I initially ended up with 3 types of Includes:
+I created Includes for HTML that either needed to be used in multiple places, or when the HTML was defnining a logical component of the website. It made sense to create Includes for the following components of the website:
 
 - Head
 - Footer
 - Navigation
 
-Each of the above could have easily been defined within the `main` Layout page, but for modularity, it made sense to keep these as separate components.
+Although not shared between pages, these components helped simplify the HTML of the main layout page, and set a precedent for abstracting out code to prevent any wildly long HTML files.
 
 ## Data Files
 
+Data Files are a way to define page content in configuration files outside of your HTML, and have it included in your page using Liquid syntax. Data Files are another good way to avoid repetition in your HTML and allow you to seperate out your configuration, rather than bloating the `_config.yml` file which is used for overall site config.
+
+For example, following the Jekyll tutorial, I created a Data File called `navigation.yml` in the `_data` directory to drive the content of the nav bar with the following contents:
+
+{:.code-block}
+```
+---
+layout: main
+---
+links:
+  - name: Home
+    link: /
+  - name: Search
+    link: /search.html
+  - name: All Posts
+    link: /all.html
+
+link-classes: nav-item nav-link
+```
+This data can now be accessed from within the nav HTML, iterated over using a for-loop provided by Liquid, to generate the different nav elements.
+
+{:.code-block}
+{% raw %}
+```
+<nav class="navbar navbar-expand-sm">
+    <!-- Code removed for brevity -->
+    <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+            {% for item in site.data.navigation.links %}
+                <div class="outer-nav-link">
+                    {% if page.url == item.link %}
+                        <span class="current-link-brace">{</span>
+                        <a class="{{ site.data.navigation.link-classes }} current" href="{{ item.link | relative_url }}">
+                            <span>{{ item.name }}</span>
+                        </a>
+                        <span class="current-link-brace">}</span>
+                    {% else %}
+                        <span class="not-current-link-brace">{</span>
+                        <a class="{{ site.data.navigation.link-classes }} not-current" href="{{ item.link | relative_url }}">
+                            <span>{{ item.name }}</span>
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</nav>
+```
+{% endraw %}
+
 # Writing Blog Entries
+
+Writing a blog entry is now just as simple as writing the Markdown, without needing to worry about the HTML structure of the page, and having to copy and paste.
+
+# Output after running Jekyll
 
 # Custom Scripts
 
