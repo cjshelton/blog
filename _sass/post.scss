@@ -16,4 +16,16 @@
             }
         }
     }
+
+    #enablingGitHubPages {
+        text-align: center;
+
+        img {
+            max-width: 779px;
+
+            @media(max-width: 991px) {
+                width: 100%;
+            }
+        }
+    }
 }

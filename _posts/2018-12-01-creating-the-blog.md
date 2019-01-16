@@ -44,7 +44,7 @@ Installation is fairly trivial, and there are good instructions on the Jekyll we
 
 Turning your repo into a live website is pretty straight forward and can be done from the repo settings.
 
-{:.text-center}
+{:#enablingGitHubPages}
 ![Enabling GitHub Pages for the repo][enabling-github-pages]
 
 [enabling-github-pages]: {{ site.baseurl }}/assets/images/2018-12-01-github-pages.png "Enabling GitHub Pages for the repo"
@@ -59,7 +59,79 @@ As a Walking Skelton, along with the required Jekyll config, I chose a simple in
 
 # Styling and Structure
 
-Now that I had proved my build and release process, I got on with designing the general theme and page structure of the blog.
+Now that I had proved my build and release process, I got on with designing the general theme and structure of the blog, making use of the Jekyll features listed above to reduce the need for duplication and to make it as easy as possible to make future edits. The main ways I achieved this was to use Layouts, Includes and Data Files.
+
+## Styling with SASS
+
+Support for SASS is built right into Jekyll, so it didn't take much setting up to get it working. I defined a `_sass` folder in the root of my project containing separate `.scss` files for each logical part of the website, helping to keep the modular and easy to maintain in the future.
+
+## Layouts
+
+One of the main benefits I have found from using a static site generator is being able to define layout pages and using them to structure pages in a more readable and maintainable way.
+
+I created a main layout page to act as the base HTML for all pages, containing placeholders for the header, nav, body and footer content defined using Liquid syntax. This meant that all pages were based off the same base HTML, ensuring consistency in the event of any changes.
+
+{:.code-block}
+```
+<!doctype html>
+<html>
+    <head>
+        {{ "{% include head.html " }}%}
+    </head>
+    <body>
+        <header>
+            {{ "{% include navigation.html " }}%}
+        </header>
+        <div id="site-content">
+            {{ "{{ content " }}}}
+        </div>
+        <footer>
+            {{ "{% include footer.html " }}%}
+        </footer>
+
+        <script src="{{ "/assets/js/lib/jquery-3.3.1.min.js" | relative_url }}"></script>
+        <script src="{{ "/assets/js/lib/bootstrap.min.js" | relative_url }}"></script>
+    </body>
+</html>
+```
+
+Every blog post will has a very similar structure so it makes sense to make use of a Layout page here too. Again, this layout is small, defining the Bootstrap grid layout and setting the blog title, date published and and blog content through Liquid.
+
+{:.code-block}
+```
+---
+layout: main
+---
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 id="post-title">{{ "{{ page.title " }}}}</h2>
+            <h4 id="post-published-date">Published: {{ "{{ page.date | date_to_string " }}}}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="post-content">
+                {{ "{{ content " }}}}
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+## Includes
+
+Similar to Layouts, Includes helped reduce duplication and promoted a cleaner more modular approach to defining the HTML for all pages.
+
+I created Includes for HTML that either needed to be used in multiple places, or when the HTML was defnining a logical component of the website. Using this criteria, I initially ended up with 3 types of Includes:
+
+- Head
+- Footer
+- Navigation
+
+Each of the above could have easily been defined within the `main` Layout page, but for modularity, it made sense to keep these as separate components.
+
+## Data Files
 
 # Writing Blog Entries
 
