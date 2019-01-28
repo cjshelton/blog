@@ -17,6 +17,10 @@ body {
     p {
         margin: 0;
     }
+
+    ol, ul {
+        padding-left: 40px;
+    }
 }
 
 #site-content {
@@ -37,4 +41,9 @@ body {
     code {
         color: white;
     }
+}
+
+.code-inline {
+    font-family: $console-font;
+    color: $code-inline-text;
 }
