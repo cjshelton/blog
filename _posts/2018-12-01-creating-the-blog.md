@@ -7,7 +7,7 @@ title:  "Creating the Blog"
 
 I have created a few simple static websites like this before, mainly when I was quite new to web development. I have spent most of my early software development career building ASP.NET MVC web applications, which one approaches in a totally different way - you already have the framework there for layout pages, partials and programatically displaying content through Razor syntax.
 
-When it came to creating this blog, I knew I didn't need anything fancy; I needed something simple, cheap to run and easy to maintain. It always bugged me how, with static websites I had previously built, all of the boilerplate content was duplicated between HTML files - the head (including meta tags, favicons and css), the navbar, the footer and general page layout. As the website grows, it becomes hard to maintain and more prone to simple development mistakes. Any new pages require a copy and paste of boilerplate content, and any edits to boilerplate content must be applied individually to all pages.
+When it came to creating this blog, I knew I didn't need anything fancy; I needed something simple, cheap to run and easy to maintain. It always bugged me how, with static websites I had previously built, all of the boilerplate content was duplicated between HTML files - the head (including meta tags, favicons and CSS), the navbar, the footer and general page layout. As the website grows, it becomes hard to maintain and more prone to simple development mistakes. Any new pages require a copy and paste of content, and any edits to this content must be applied individually to all pages.
 
 Considering the [DRY principle][dry-principle-url], this involved a lot of RY and not a lot of DRY. I wanted to find a better way to do it, and that's how I came across the combination of Jekyll and GitHub Pages, which offered the workflow improvements I was after.
 
@@ -15,12 +15,12 @@ Considering the [DRY principle][dry-principle-url], this involved a lot of RY an
 ![Jekyll logo][jekyll-logo]
 ![GitHub Pages logo][github-pages-logo]
 
-[Jekyll][jekyll-url] is an open source static site generation tool written in Ruby. Static site generators like Jekyll simplify the process of building and maintaining static websites. Jekyll is also blog-aware, meaning it has features which make the process of creating a blog much easier, since a blog be represented as a series of files served statically over the web.
+[Jekyll][jekyll-url] is an open source static site generation tool written in Ruby. Static site generators like Jekyll simplify the process of building and maintaining static websites. Jekyll is also blog-aware, meaning it has features which make the process of creating a blog much easier, since a blog can be represented as a series of files served statically over the web.
 
 Some of the most useful features of Jekyll I have found include:
 - Support for Markdown and automatic conversion to HTML.
 - Support for SASS and minification out-of-the-box.
-- Front Matter to dynamically apply page content and metadata.
+- Front Matter to set page variables and metadata.
 - Support for Liquid templating to programmtically set page content.
 - Layouts and Includes to avoid page duplication and promote a modular page structure.
 - It is CLI-driven making it easy to create custom scripts and automate your workflow.
@@ -31,12 +31,12 @@ The Jekyll website explains all of the above well, and has an easy-to-follow tut
 
 # Setup
 
-I vary which machine I develop on, but for small development projects like this which aren't tied to Windows, I tend to use my Mac. Jekyll runs on Ruby which was already installed on my Mac, along with the RubyGems package manager (I believe they're pre-installed on all Mac machines by default), so I only had to run the below commands to install Jekyll and the Bundler, and initialise a new blank Jekyll project.
+I vary which machine I develop on, but for small development projects like this which aren't tied to Windows, I tend to use my Mac. Jekyll runs on Ruby which was already installed on my Mac, along with the RubyGems package manager (I believe they're pre-installed on all Mac machines by default). After updating my Ruby and RubyGems versions, I only had to run the below commands to install Jekyll and the Bundler, and scaffold a new blank Jekyll project.
 
 {:.code-block}
 ```
 sudo gem install jekyll bundler
-jekyll new --blank
+jekyll new --blank \Blog
 ```
 
 Installation is fairly trivial, and there are good instructions on the Jekyll website for installing on different environments.
@@ -48,7 +48,7 @@ Turning your repo into a live website is pretty straight forward and can be done
 {:#enablingGitHubPages}
 ![Enabling GitHub Pages for the repo][enabling-github-pages]
 
-I chose my master branch as the one that should be listened to for any changes. Representing my live code base, whenever any new commits are made to this branch, the code is automatically built and the Jekyll output published. I opted not to go for a theme as I wanted to write all of the styling myself, and have not hooked up the site to a custom domain as I am happy to take the free hosting and HTTPS from GitHub!
+I chose the master branch as the one that should be listened to for any changes. Representing my live code base, whenever any new commits are made to this branch, the code is automatically built and the Jekyll output published. I opted not to go for a theme as I wanted to write all of the styling myself, and have not hooked up the site to a custom domain as I am happy to take the free hosting and HTTPS from GitHub!
 
 _N.B. After initially enabling GitHub pages, it can take around 30 mins for the change to take affect, but subsequent changes are made live straight away._
 
