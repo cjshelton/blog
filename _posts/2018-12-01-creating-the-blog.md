@@ -27,7 +27,7 @@ Some of the most useful features of Jekyll I have found include:
 
 The Jekyll website explains all of the above well, and has an easy-to-follow tutorial to get you started writing a simple blog.
 
-[GitHub Pages][github-pages-url] is a free hosting platform provided by GitHub for websites that use static content, and is a natural choice for blogs written in Jekyll. It allows you to turn any public GitHub repository into a live website, supporting Jekyll out-of-the-box so your site will be built and published on push to your selected branch.
+[GitHub Pages][github-pages-url] is a free hosting platform provided by GitHub for websites that use static content, and is a natural choice for blogs written in Jekyll. It allows you to turn a public GitHub repository into a live static website, supporting Jekyll out-of-the-box so your site will be built and published on push to your selected branch.
 
 # Setup
 
@@ -39,7 +39,7 @@ sudo gem install jekyll bundler
 jekyll new --blank \Blog
 ```
 
-Installation is fairly trivial, and there are good instructions on the Jekyll website for installing on different environments.
+Installation is fairly trivial, and there are good instructions on the Jekyll website for installing on different environments. [This article][github-pages-jekyll-config-url] is also useful as it describes how to configure your Gemfile specifically for hosting on GitHub Pages.
 
 # Enabling GitHub Pages
 
@@ -54,7 +54,7 @@ _N.B. After initially enabling GitHub pages, it can take around 30 mins for the 
 
 # Creating the Walking Skeleton
 
-As I do with most projects (in and out of work), I always try start off with the most basic product and try to prove the whole build and release process. Solving any issues with your build and release process is much easier when there are fewer variables involved - a very small code base lessens the chance that issues are being caused by your code.
+As I do with most projects (in and out of work), I always try start off with the most basic product and try to prove the whole build and release process first. Solving any issues with your build and release process is much easier when there are fewer variables involved - a very small code base lessens the chance that issues are being caused by your code.
 
 As a Walking Skelton, along with the required Jekyll config, I chose a simple `index.html`{:.code-inline} page with a basic nav and footer. I merged this branch into my master branch to kick off a Jekyll build of my site. This highlighted an issue with my Gemfile. After fixing that, my changes were live.
 
@@ -64,7 +64,7 @@ Once I had proved my build and release process, I got on with designing the gene
 
 ## Layouts
 
-One of the main benefits I have found from using a static site generator is being able to define layout pages and using them to structure pages in a more readable and maintainable way.
+One of the main benefits I have found from using a static site generator is being able to define layout pages and use them to structure pages in a more readable and maintainable way.
 
 I created a Main layout page to act as the base HTML for all pages, containing placeholders for the header, nav, body and footer content, defined using Liquid syntax. This means that all pages are based off the same HTML, ensuring consistency in the event of any changes.
 
@@ -94,7 +94,7 @@ I created a Main layout page to act as the base HTML for all pages, containing p
 ```
 {% endraw %}
 
-Every blog post has a very similar structure so it makes sense to make use of a Layout page here too for defining the Bootstrap grid layout and setting the blog title, date published and blog content through Liquid syntax. Layout pages can use other layout pages. Using Front Matter defined at the top of the page, I configured the Post Layout page to make use of the Main layout:
+Every blog post has a very similar structure, so it makes sense to make use of a Layout page here too for defining the Bootstrap grid layout and setting the blog title, date published and blog content through Liquid syntax. Layout pages can use other layout pages. Using Front Matter defined at the top of the page, I configured the Post layout to make use of the Main layout:
 
 {:.code-block}
 {% raw %}
@@ -147,7 +147,7 @@ As can be seen below, this data can be accessed from within the nav HTML, iterat
 ```
 <nav class="navbar navbar-expand-sm">
     <!-- Code removed for brevity -->
-    <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse ml-auto" id="blog-nav">
         <div class="navbar-nav ml-auto">
             {% for item in site.data.navigation.links %}
                 <div class="outer-nav-link">
@@ -173,10 +173,10 @@ As can be seen below, this data can be accessed from within the nav HTML, iterat
 
 # Writing Blog Entries
 
-Jekyll is blog-aware, meaning it has built in features to make building blog websites simpler. One of the key features is being able to write blog posts in Markdown and have them automatically converted to HTML as part of the build process. To achieve this, Jekyll uses a Markdown parser plug-in which by default, offers good results, but can easily be configured to tailor the HTML output further.
+Jekyll is blog-aware, meaning it has built-in features to make building blog websites simpler. One of the key features is being able to write blog posts in Markdown and have them automatically converted to HTML as part of the build process. To achieve this, Jekyll uses a Markdown parser plug-in which by default, offers good results, but can easily be configured to tailor the HTML output further.
 
 Being able to write blog posts in this way has some significant benefits:
-1. Simplicity - you can forget about `<div>`{:.code-inline} and `<p>`{:.code-inline} tags. Markdown has very simple syntax, meaning you can focus more on the actual contnt of the blog posts. There's also no need for a database to fetch your post content, everything is driven from static files.
+1. Simplicity - You can forget about `<div>`{:.code-inline} and `<p>`{:.code-inline} tags. Markdown has very simple syntax, meaning you can focus more on the actual content of the blog posts. There's also no need for a database to fetch your post content from, everything is driven from static files.
 1. Portability - Markdown has been widely adopted as a markup language and is a good way of adding content to wiki pages. It's very readable in its raw format which makes distribution a lot easier, even to those who have never heard of it.
 1. Source control everything - Markdown files can easily be source controlled. This means everything that is required to generate this website is tracked in my repo.
 
@@ -192,6 +192,7 @@ The source code for this blog is available in publicly so feel free to have a lo
 [dry-principle-url]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [jekyll-url]: https://jekyllrb.com
 [github-pages-url]: https://pages.github.com
+[github-pages-jekyll-config-url]: https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/
 
 [jekyll-logo]: {{ site.baseurl }}/assets/images/jekyll-logo.png "Jekyll logo"
 [github-pages-logo]: {{ site.baseurl }}/assets/images/github-pages-logo.png "GitHub Pages logo"
