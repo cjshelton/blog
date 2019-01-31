@@ -7,6 +7,9 @@ defaults:
     values:
       layout: "main"
 
+# Set a custom excerpt separator to override what is rendered for each post on the index page.
+excerpt_separator: <!-- excerpt-end -->
+
 # Files to exclude from site conversion.
 exclude:
   ["serve.command"]
