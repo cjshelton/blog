@@ -1,3 +1,24 @@
+#post-header {
+    margin-bottom: 30px;
+    
+    #post-title {
+        float: left;
+        font-size: 40px;
+    }
+
+    #post-published-date {
+        float: right;
+        font-size: 19px;
+    }
+
+    @media(max-width: 767px) {
+        #post-title, #post-published-date {
+            float: none;
+            clear: both;
+        }
+    }
+}
+
 #post-content {
     p {
         margin-bottom: 10px;
@@ -30,6 +51,6 @@
     }
 
     .code-block {
-        margin-bottom: 10px;
+        margin: 20px 0;
     }
 }
