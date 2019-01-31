@@ -5,7 +5,9 @@ title:  "Creating the Blog"
 
 ## Introduction
 
+<!-- excerpt-start -->
 I have created a few simple static websites like this before, mainly when I was quite new to web development. I have spent most of my early software development career building ASP.NET MVC web applications, which one approaches in a totally different way -- you already have the framework there for layout pages, partials and programatically displaying content through Razor syntax.
+<!-- excerpt-end -->
 
 When it came to creating this blog, I knew I didn't need anything fancy; I needed something simple, cheap to run and easy to maintain. It always bugged me how, with static websites I had previously built, all of the boilerplate content was duplicated between HTML files -- the head (including meta tags, favicons and CSS), the navbar, the footer and general page layout. As the website grows, it becomes hard to maintain and more prone to simple development mistakes. Any new pages require a copy and paste of content, and any edits to this content must be applied individually to all pages.
 

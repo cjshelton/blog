@@ -12,9 +12,14 @@ title: Blog
             <div class="col-sm-12">
                 <div class="site-post">
                     <h3 class="site-post-header"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-                    <span class="published-date float-right">Published {{ post.date | date_to_string }}</span>
+                    <p class="published-date">Published {{ post.date | date_to_string }}</p>
                     <div class="clearfix"></div>
-                    {{ post.excerpt }}
+                    {% comment %}
+                        post.excerpt includes content which shouldn't be displayed. So split the content using a custom
+                        separator in the post content and then take the second element.
+                    {% endcomment %}
+                    {% assign excerptParts = post.excerpt | split: "<!-- excerpt-start -->" %}
+                    {{ excerptParts[1] }}
                 </div>
             </div>
         </div>

@@ -17,6 +17,12 @@
             color: $grey;
             font-size: 14px;
             font-style: italic;
+            float: right;
+
+            @media(max-width: 767px) {
+                float: none;
+                clear: both;
+            }
         }
 
         // Post excerpt
