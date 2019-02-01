@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Creating the Blog"
+comments-enabled: true
 ---
 
 ## Introduction

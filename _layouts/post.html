@@ -18,4 +18,17 @@ layout: main
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Comments</h2>
+
+            {% if page.comments-enabled %}
+                {% if jekyll.environment == "production" %}
+                    {% include comments.html %}
+                {% else %}
+                    <strong>Comments disabled when environment is not Production.</strong>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
 </div>
