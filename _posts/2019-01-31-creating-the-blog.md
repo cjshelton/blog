@@ -7,7 +7,7 @@ comments-enabled: true
 ## Introduction
 
 <!-- excerpt-start -->
-I have created a few simple static websites like this before, mainly when I was quite new to web development. I have spent most of my early software development career building ASP.NET MVC web applications, which one approaches in a totally different way -- you already have the framework there for layout pages, partials and programatically displaying content through Razor syntax.
+I have created a few simple static websites like this before, mainly when I was quite new to web development. I have spent most of my early software development career building ASP.NET MVC web applications, which one approaches in a totally different way -- you already have the framework there for layout pages, partials and programmatically displaying content through Razor syntax.
 <!-- excerpt-end -->
 
 When it came to creating this blog, I knew I didn't need anything fancy; I needed something simple, cheap to run and easy to maintain. It always bugged me how, with static websites I had previously built, all of the boilerplate content was duplicated between HTML files -- the head (including meta tags, favicons and CSS), the navbar, the footer and general page layout. As the website grows, it becomes hard to maintain and more prone to simple development mistakes. Any new pages require a copy and paste of content, and any edits to this content must be applied individually to all pages.
@@ -24,7 +24,7 @@ Some of the most useful features of Jekyll I have found include:
 - Support for Markdown and automatic conversion to HTML.
 - Support for SASS and minification out-of-the-box.
 - Front Matter to set page variables and metadata.
-- Support for Liquid templating to programmtically set page content.
+- Support for Liquid templating to programmatically set page content.
 - Layouts and Includes to avoid page duplication and promote a modular page structure.
 - It is CLI-driven making it easy to create custom scripts and automate your workflow.
 
@@ -57,7 +57,7 @@ _N.B. After initially enabling GitHub pages, it can take around 30 mins for the 
 
 ## Creating the Walking Skeleton
 
-As I do with most projects (in and out of work), I always try to start off with the most basic product and use that to setup my local development environment and prove the whole build and release process. Having both of these in place early makes development a smoother and more efficient experience. Solving issues with your envorironment or release process is much easier when there are fewer variables involved -- a small code base lessens the chance that any early issues are being caused by your code.
+As I do with most projects (in and out of work), I always try to start off with the most basic product and use that to setup my local development environment and prove the whole build and release process. Having both of these in place early makes development a smoother and more efficient experience. Solving issues with your environment or release process is much easier when there are fewer variables involved -- a small code base lessens the chance that any early issues are being caused by your code.
 
 #### Setting up my Local Dev Environment
 
@@ -65,7 +65,7 @@ The first step involved creating the Git repo and pointing it at my newly scaffo
 
 #### Proving the Build &amp; Release Process
 
-As a Walking Skelton, I chose to deploy a simple `index.html`{:.code-inline} page with a basic nav and footer. I merged these changes into my master branch to kick off a Jekyll build of my site in GitHub Pages. This highlighted an issue with my Gemfile. After fixing that, my changes were live.
+As a Walking Skeleton, I chose to deploy a simple `index.html`{:.code-inline} page with a basic nav and footer. I merged these changes into my master branch to kick off a Jekyll build of my site in GitHub Pages. This highlighted an issue with my Gemfile. After fixing that, my changes were live.
 
 ## Styling and Structure
 
@@ -123,7 +123,7 @@ layout: main
 
 #### Includes
 
-Similar to Layouts, Includes help reduce duplication and promote a cleaner, more modular approach to defining HTML. For those who are familiar with ASP.NET, Includes work like Partial Views, abstracting the HTML out to seperate files, allowing pages to be built from components which can be shared amongst other pages.
+Similar to Layouts, Includes help reduce duplication and promote a cleaner, more modular approach to defining HTML. For those who are familiar with ASP.NET, Includes work like Partial Views, abstracting the HTML out to separate files, allowing pages to be built from components which can be shared amongst other pages.
 
 I created Includes for HTML that either needed to be used in multiple places, or when it was defining a logical component of the website. It made sense to create Includes for the following components:
 
@@ -135,7 +135,7 @@ Although not shared between pages, these components helped simplify the HTML of 
 
 #### Data Files
 
-Data Files are a way to define site and page content in configuration files, outside of your HTML, and have it included in your page using Liquid. Data Files are another good way to avoid repetition in your HTML and allow you to seperate out your site configuration, rather than bloating the `_config.yml`{:.code-inline} file.
+Data Files are a way to define site and page content in configuration files, outside of your HTML, and have it included in your page using Liquid. Data Files are another good way to avoid repetition in your HTML and allow you to separate out your site configuration, rather than bloating the `_config.yml`{:.code-inline} file.
 
 For example, following the Jekyll tutorial, I created a Data File called `navigation.yml`{:.code-inline} in the `_data`{:.code-inline} directory to drive the content of the nav bar with the following contents:
 
@@ -194,7 +194,7 @@ Being able to write blog posts in this way has some significant benefits:
 As with all websites that are built from scratch, there was an initial ramp-up of effort to get the blog in a place I was happy with -- setting up the repo, configuring Jekyll and my local development environment, structuring and styling the site, and getting a simple and repeatable deployment process in place.
 But now all that is done, assuming I don't want to make any radical changes to the look and feel of the blog, keeping it up-to-date with fresh posts is easy.
 
-Writing a new blog entry is now just as simple as writing the Markdown and comitting the new file to the repo, with a bit of SASS in there if I'm wanting something styled a particuar way. This is in stark contrast to the way I currently maintain some other static websites which require changes across multiple files, a lot of which is copying and pasting.
+Writing a new blog entry is now just as simple as writing the Markdown and committing the new file to the repo, with a bit of SASS in there if I'm wanting something styled a particular way. This is in stark contrast to the way I currently maintain some other static websites which require changes across multiple files, a lot of which is copying and pasting.
 
 The source code for this blog is available publicly so feel free to have a look around and reach out if you have any questions.
 
