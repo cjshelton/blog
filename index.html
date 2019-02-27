@@ -15,11 +15,11 @@ title: Blog
                     <p class="published-date">Published {{ post.date | date_to_string }}</p>
                     <div class="clearfix"></div>
                     {% comment %}
-                        post.excerpt includes content which shouldn't be displayed. So split the content using a custom
+                        `post.excerpt` includes content which shouldn't be displayed. So split the content using a custom
                         separator in the post content and then take the second element.
                     {% endcomment %}
                     {% assign excerptParts = post.excerpt | split: "<!-- excerpt-start -->" %}
-                    {{ excerptParts[1] }}
+                    {{ excerptParts[1] | strip_newlines | truncatewords: 50 }}
                 </div>
             </div>
         </div>
