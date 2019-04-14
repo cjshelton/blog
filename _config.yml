@@ -11,8 +11,10 @@ defaults:
 excerpt_separator: <!-- excerpt-end -->
 
 # Files to exclude from site conversion.
-exclude:
-  ["serve.command"]
+exclude: [
+  "sh-serve.command", 
+  "sh-clean.command"
+]
 
 # SASS Config
 sass:
