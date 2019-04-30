@@ -24,7 +24,18 @@
         margin-bottom: 10px;
     }
 
-    #logo-container {
+    #logo-single-container {
+        text-align: center;
+        img {
+            width: 45%;
+
+            @media(max-width: 450px) { 
+                width: 60%;
+            }
+        }
+    }
+
+    #logo-duo-container {
         text-align: center;
         img {
             width: 30%;
@@ -38,7 +49,7 @@
         }
     }
 
-    #enablingGitHubPages {
+    #screenshot {
         text-align: center;
 
         img {
