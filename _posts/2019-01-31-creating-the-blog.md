@@ -14,7 +14,7 @@ When it came to creating this blog, I knew I didn't need anything fancy; I neede
 
 Considering the [DRY principle][dry-principle-url], this involved a lot of RY and not a lot of DRY. I wanted to find a better way to do it, and that's how I came across the combination of Jekyll and GitHub Pages which offered the workflow improvements I was after.
 
-{:#logo-container}
+{:#logo-duo-container}
 ![Jekyll logo][jekyll-logo]
 ![GitHub Pages logo][github-pages-logo]
 
@@ -48,7 +48,7 @@ Installation is fairly trivial, and there are good instructions on the Jekyll we
 
 Turning your repo into a live website is pretty straight forward, and can be done from the repo settings.
 
-{:#enablingGitHubPages}
+{:#screenshot}
 ![Enabling GitHub Pages for the repo][enabling-github-pages]
 
 I chose the master branch as the one that should be listened to for any changes. Representing my live code base, whenever any new commits are made to this branch, the code is automatically built and the Jekyll output published. I opted not to go for a theme as I wanted to write all of the styling myself, and have not hooked up the site to a custom domain as I am happy to take the free hosting and HTTPS from GitHub!
