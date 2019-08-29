@@ -136,3 +136,20 @@ Some indicators which highlight that you may have violated the SRP include:
 - Code duplication across multiple classes.
 - Complex and hard to understand classes. This is a tricky one because some classes may be complex in nature, but it's always worth checking to see if you can perform any abstractions to simplify the code any further.
 - Class methods whose names cover multiple actions. For example, `CreateAndSetUser(...)`{:.code-inline}.
+
+## Open/Closed Principle
+
+The Open/Closed Principle (OCP) states that code should be written so that it is open for extension and closed for modification.
+
+Extension here means that the code should be flexible enough to be reused without requiring a code change. Modifications to existing code, especially that which is in production, carries risks and should be minimised. Existing code will have already been tested and should be stable; changes to this code may introduce regressions and result in extra development effort.
+
+Code which adheres to the OCP not only protects the code against risk modifications, it promotes reuse and a simpler architecture which is easier to maintain in the future.
+
+From experience, there is no one way to apply the OCP. I have found the following to be practical ways of designing code which flexible for re-use:
+- Interfacing and constructor injection (for OO languages)
+- Passing in by parameters rather than hard coding
+- Polymorphism.
+- Extension methods
+
+
+These principles are very much guidelines for ways of producing better quality software. It is not always possible to follow them literally, and there is no prescriptive way to apply these principles to all languages and situations; it's up to us as developers to adapt the principles and get the most benefit from them applying them. 
