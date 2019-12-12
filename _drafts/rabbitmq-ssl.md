@@ -73,24 +73,53 @@ Bear in mind, some of the most common SSL issues come about due to errors in the
 
 #### Enabling SSL in Rabbit MQ
 
-SSL is enabled in the Rabbit MQ configuration file, typically located in the `/etc/rabbitmq`{:.code-inline} directory on Linux. The `rabbitmq.conf`{:.code-inline} did not exist for me, so I created it, and added the following lines to enable SSL:
+SSL is enabled in the Rabbit MQ configuration file, typically located in the `/etc/rabbitmq`{:.code-inline} directory on Linux. The `rabbitmq.conf`{:.code-inline} did not exist after my installation, so I created it, and added the following lines to enable SSL:
 
+{:.code-block}
+```
+listeners.ssl.default               = 5671
+ssl_options.cacertfile              = /etc/rabbitmq/ssl/ca_certificate.pem
+ssl_options.certfile                = /etc/rabbitmq/ssl/server_certificate.pem
+ssl_options.keyfile                 = /etc/rabbitmq/ssl/private_key.pem
+ssl_options.password                = SuperSecretPassword123
 ```
 
+The above config sets the SSL port (5671 is the default), and tells the broker where to find the cert files. Obviously this assumes that the cert files from the previous step have been transferred to the server. I chose to place my cert files in a new `ssl`{:.code-inline} directory.
 
+If you also want to enable [Peer Verification](#peer-verification), add the following lines too:
+
+{:.code-block}
 ```
+ssl_options.verify                  = verify_peer
+ssl_options.fail_if_no_peer_cert    = false
+```
+
+You'll want to restart the broker service at this point, and after any change to the config file. Now, RabbitMQ is set up to accept secure connections and transmit data in encrypted form to any clients which connect via this SSL port. If you want to disable non-SSL connections, this can be done with the following entry:
+
+{:.code-block}
+```
+listeners.tcp = none
+```
+
+As an aside -- I chose this as an opportunity to give [Remote Development using SSH in VS Code][remote-development-using-ssh-in-vs-code] a try, and overall it worked pretty well. I had some issues in connecting at times, but it was great to be able to edit files on a remote server in a familiar development environment. I used [this guide][raspberry-pi-ssh-guide] to assist with enabling SSH on my Raspberry Pi.
+
+#### Client Connections via SSL
+
+Now that SSL is setup on the broker, we need to create a client which will connect via SSL so it can securely produce and consume from the message queues.
+
+I chose to create a .NET client application -- a .NET Core 3.0 Console Application along with a supporting .NET Standard 2.1 class library. The full client code is available on my GitHub page, but as an overview:
+
+- I created a generic...
+- Add NuGet package `RabbitMQ.Client`
+
+Because we have enabled [Peer Verification](#peer-verification), we need to ensure the certificates are installed and available on the client machine.
 
 
 [rabbitmq-url]: https://www.rabbitmq.com/getstarted.html
 [ssl-youtube-video-url]: https://youtu.be/T4Df5_cojAs
 [rabbitmq-generating-certs]: https://www.rabbitmq.com/ssl.html#manual-certificate-generation
-
-
-Management UI not accessible via guest account from any machine other than localhost. Create a new user account.
-Basic Rabbit MQ Overview.
-Basic terminology overview.
-Create new Solution, with a project for Producing in. .NET Core 3.0.
-Add NuGet package `RabbitMQ.Client`
+[remote-development-using-ssh-in-vs-code]: https://code.visualstudio.com/docs/remote/ssh
+[raspberry-pi-ssh-guide]: https://www.raspberrypi.org/documentation/remote-access/ssh/
 
 Wrote base connection classes and unit tests. XUnit - because of Facts and Theories.
 Architectured code.
@@ -99,19 +128,6 @@ BasicConnectionFactory
 SslConnectionFactory
 
 TLS - 2 purposes, for encrypting traffic and authenticating with the server.
-
-# 1st - Enable TLS on RabbitMQ Server for encrypted connection.
-Used docs for this.
-Chose to manually generate self signed certs following documentation.
-
-# Enable TLS on Rabbit MQ
-Need to tell RabbitMQ about location of CA bundle, server cert and private key.
-
-Transferred the files over to the server in the home directory.
-Needed to update the config file to point RMQ at the files. Needed to create a rabbitmq.conf file as it didn't exist.
-Copied the example config and removed a load of stuff I didn't need. All commented out anyway.
-
-Set up VS Code Remote SSH onto Raspberry Pi. Had to enable SSH on the Pi:
 
 https://www.raspberrypi.org/documentation/remote-access/ssh/  -- step 2 using raspi-config.
 
