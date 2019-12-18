@@ -9,4 +9,4 @@ bundle exec jekyll clean
 open -a /Applications/Google\ Chrome.app http://localhost:$LOCAL_SERVER_PORT$BASE_URL/
 
 ### Start Jekyll with custom configuration ###
-bundle exec jekyll serve --strict_front_matter --port $LOCAL_SERVER_PORT --baseurl $BASE_URL --livereload
+bundle exec jekyll serve --strict_front_matter --port $LOCAL_SERVER_PORT --baseurl $BASE_URL --livereload --drafts
