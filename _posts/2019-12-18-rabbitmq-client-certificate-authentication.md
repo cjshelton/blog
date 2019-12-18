@@ -106,6 +106,9 @@ listeners.tcp = none
 
 As an aside &mdash; I chose this as an opportunity to give [Remote Development using SSH in VS Code][remote-development-using-ssh-in-vs-code] a try, and overall it worked pretty well. I had some issues with connecting at times, but it was great to be able to edit files on a remote server using a familiar development environment (if you're a hardcore vim user, it might not be right for you!). I used [this guide][raspberry-pi-ssh-guide] to assist with enabling SSH on my Raspberry Pi.
 
+{:.screenshot}
+![Remote Development using SSH in VS Code][remote-ssh-development]
+
 #### Client Connections via SSL
 
 Now that SSL is setup on the broker, we need to create a client which will connect via SSL so it can securely produce and consume from the message queues.
@@ -134,6 +137,9 @@ Because we have enabled Peer Verification, we need to ensure the necessary certi
 One of the outputs when using OpenSSH to generate the client certificates is a `.p12`{:.code-inline} file, which is the format expected by the .NET client. The path to this file must be set in `Ssl.CertPath`{:.code-inline}.
 
 The CA bundle must be installed on the client machine as a trusted authority. I did this on my Mac by double clicking on the file and adding it to the Keychain of the my user. This CA is now trusted on the client machine, which means both the server and client certificates are inherently trusted too.
+
+{:.screenshot}
+![Trusting CA Certificate in Keychain][trust-ca-certificate-keychain]
 
 #### Testing SSL Connections
 
@@ -213,3 +219,6 @@ At this point, you should have a working solution for authenticating with Rabbit
 [remote-development-using-ssh-in-vs-code]: https://code.visualstudio.com/docs/remote/ssh
 [raspberry-pi-ssh-guide]: https://www.raspberrypi.org/documentation/remote-access/ssh/
 [rabbitmq-demo-repo-url]: https://github.com/cjshelton/RabbitMQDemo
+
+[remote-ssh-development]: {{ "/assets/images/remote-ssh-development.png" | relative_url }} "Remote Development using SSH in VS Code"
+[trust-ca-certificate-keychain]: {{ "/assets/images/trust-ca-certificate-keychain.png" | relative_url }} "Trusting CA Certificate in Keychain"
