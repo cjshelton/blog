@@ -72,7 +72,7 @@ Builds in Azure DevOps are capable of doing deployments as well as building your
 
 The build steps should look familiar to anyone who has set up a CI build of a .NET project before.
 
-{:#screenshot}
+{:.screenshot}
 ![Azure DevOps Build][azure-devops-build]
 
 1. Declare the pipeline to run on an agent in the Hosted VS2017 Agent Pool. Other Agent Pools are available and can be used with .NET Core builds, but since I have a solution file, the Hosted VS2017 Agent Pool is required.
@@ -83,13 +83,13 @@ The build steps should look familiar to anyone who has set up a CI build of a .N
 
 The output of the build is then fed into the Release pipeline below.
 
-{:#screenshot}
+{:.screenshot}
 ![Azure DevOps Release][azure-devops-release]
 
 1. The artifacts for the release are the outputs of the build stage.
 1. No automatic trigger or schedule has been configured; releases must be triggered manually. This is a conscious decision to allow changes to be made to the project without creating a new version of the package everytime.
 
-{:#screenshot}
+{:.screenshot}
 ![Azure DevOps Release Pipeline][azure-devops-release-tasks]
 
 The stages for release, as shown above, involve two key tasks:
@@ -103,7 +103,7 @@ The recommended way to version NuGet packages is to follow the Major.Minor.Patch
 
 There are a few options which can be used for automatic versioning when using the `dotnet pack`{:.code-inline} command.
 
-{:#screenshot}
+{:.screenshot}
 ![dotnet pack Versioning][dotnet-pack-versioning]
 
 Eventually it would be good to move to a more automated approach, relying less on the version number being incremented manually for each release. I would probably achieve this through the use of environment variables for Major and Minor, and use the build number for Patch. I may also look into [Git Version][git-version-url] which infers a semantic version based on the git workflow in place.
