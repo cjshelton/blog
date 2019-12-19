@@ -211,7 +211,7 @@ AuthMechanisms = externalMechanismFactory == null
     : new List<AuthMechanismFactory> { externalMechanismFactory };
 ```
 
-At this point, you should have a working solution for authenticating with RabbitMQ using certificates. Check out the full code example on GitHub if you are having issues, or if you are interested in seeing the complete .NET example code.
+At this point, you should have a working solution for authenticating with RabbitMQ using certificates. Check out the full code example on [GitHub][rabbitmq-demo-repo-url] if you are having issues, or if you are interested in seeing the complete .NET example code.
 
 [rabbitmq-url]: https://www.rabbitmq.com/getstarted.html
 [ssl-youtube-video-url]: https://youtu.be/T4Df5_cojAs
