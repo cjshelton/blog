@@ -124,7 +124,7 @@ COPY --from=build /app/WebAPI/dist/ .
 
 #### Set the Start-up Properties
 
-And finally, set the start-up properties of the Production image, including settint the port to expose from the Container, and the command to run when creating a Container.
+And finally, set the start-up properties of the Production image, including setting the port to expose from the Container, and the command to run when creating a Container.
 
 {:.code-block}
 ```
@@ -133,10 +133,46 @@ EXPOSE 80
 ENTRYPOINT [ "dotnet", "HomePortalAPI.dll" ]
 ```
 
+### Deploying and Running the App on the Pi
+
+Tne hard work has been done at this point. Deploying and running the app on the Pi should be a straightforward process thanks to Docker.
+
+#### Deploying the App
+
+In an ideal world, the deployment of the application would be fully automated, and the process would be as follows:
+
+1. Push changes to the remote `master`{:.code-inline} branch.
+2. A build of the application is automatically triggered. This could be done using Azure DevOps, GitHub Actions or any other CI provider.
+3. On successful build of the application, push the production-ready image to a remote Container Registry like Azure Container Registry.
+4. Most Container Registry services allow webhooks to be configured, which send `POST`{:.code-inline} reqeusts to a custom endpoint. A webhook could be configured to respond to a push action in the Registry, which sends a `POST`{:.code-inline} request to the Pi.
+5. On receiving a `POST`{:.code-inline} request, the Pi is then aware that a new version of the image is available. The Pi would run a `docker pull`{:.code-inline} command against the Registry to get the new image and run it.
+
+In the spirit of [KISS][kiss-principle-url], I decided against the above setup. Although a fully-automated process should almost always be a goal, for this personal project, it certainly felt overkill.
+
+The process that works for me is simply:
+
+1. Build the image on my development laptop.
+2. TAR the image to an archive file using the `docker save`{:.code-inline} command.
+3. `scp`{:.code-inline} the TAR file over to the Pi.
+
+#### Running the App
+
+Now the application can be run by doing a basic `docker run`{:.code-inline} command, targeting the newly transferred image. I later introduced Docker Compose into the process so running the app is simpler and can be source controlled.
+
+### Problems with .NET Core 3.1
+
+I mentioned earlier in the post that I intended on using the latest version of .NET Core (3.1) for my project, given it is LTS and would enable me to use some cool new language features in C# 8.
+
+Unfortunately, due to some complicated issues with gRPC on the Raspberry Pi, I was forced to downgrade to .NET Core 2.1. [gRPC][grpc-url] is not a direct dependency of my application, rather a dependency of the official [Google Cloud Firestore package][firestore-client-nuget-url] which I am using for interacting with my Google Cloud Firestore document database.
+
+I also had to install a package to allow gRPC to work on the Pi.
+
 * Note about gRPC error. Use latest version.
-* Note about why not 3.1
 
 [noobs-url]: https://www.raspberrypi.org/downloads/noobs/
 [enable-ssh-url]: https://www.raspberrypi.org/documentation/remote-access/ssh/
 [install-docker-article-url]: https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl
 [dotnet-publish-2.1-url]: https://docs.microsoft.com/en-us/dotnet/core/deploying/#examples
+[kiss-principle-url]: https://en.wikipedia.org/wiki/KISS_principle
+[grpc-url]: https://grpc.io/
+[firestore-client-nuget-url]: https://www.nuget.org/packages/Google.Cloud.Firestore/
